@@ -1,0 +1,33 @@
+{% extends 'main/header.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>Ваши задачи</h1>
+    <br>
+    {% if tasks  %}
+        {% for element in tasks %}
+            <div class="alert alert-warning mt-2">
+                <h3>{{ element.title }}</h3>
+                <p>{{ element.task }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>У вас нет записей</p>
+    {% endif %}
+    <div>
+        {% for i in names %}
+            <div>{{ i }}</div>
+        {% endfor %}
+    </div>
+
+    <div>
+        {% if user.is_authenticated %}      <!--Проверка на логин-->
+            <p><strong>Привет, {{user.username}}</strong></p>
+        {% else %}
+            <p><strong>Войдите в систему!</strong></p>
+        {% endif %}
+    </div>
+{% endblock %}
